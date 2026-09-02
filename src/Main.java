@@ -103,15 +103,7 @@ public class Main {
         // ----------------- SDROGOCORSE -----------------
         List<String> colonneSdrogocorse = Arrays.asList("Gare Giocate", "Podi", "Win %");
         Gioco sdrogocorse = new Gioco("Sdrogocorse", colonneSdrogocorse);
-        
-        Punteggio player1 = new Punteggio("Daniele");
-        player1.addStat("Gare Giocate", 10);
-        player1.addStat("Podi", 8);
-        player1.addStat("Win %", "80.0%");
-        sdrogocorse.aggiungiPunteggio(player1);
 
-
-        // ----------------- GENERAZIONE -----------------
         List<Gioco> giochi = new ArrayList<>();
         giochi.add(golfatine);
         giochi.add(sdrogocorse);
