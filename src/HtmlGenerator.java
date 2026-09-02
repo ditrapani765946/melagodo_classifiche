@@ -120,14 +120,30 @@ public class HtmlGenerator {
                     writer.println("                <div class=\"season-filters\">");
                     writer.println("                    <span>Seleziona Stagioni da sommare:</span>");
                     for(String s : stagioni) {
-                        writer.println("                    <label><input type=\"checkbox\" value=\"" + s + "\" checked onchange=\"renderMultiSeason(" + i + ")\"> " + s + "</label>");
+                        String isChecked = s.equals("2026") ? "checked" : "";
+                        writer.println("                    <label><input type=\"checkbox\" value=\"" + s + "\" " + isChecked + " onchange=\"renderMultiSeason(" + i + ")\"> " + s + "</label>");
                     }
                     writer.println("                </div>");
                     
                     // Inietta i dati JSON
                     writer.println("                <script>");
+                    writer.println("                    if(typeof multiSeasonData === 'undefined') var multiSeasonData = {};");
+                    writer.println("                    if(typeof multiSeasonGuestsData === 'undefined') var multiSeasonGuestsData = {};");
                     writer.println("                    multiSeasonData[" + i + "] = [");
                     for (Punteggio p : g.getClassifica()) {
+                        writer.print("                        { giocatore: '" + p.getNomeGiocatore().replace("'", "\\'") + "', stagione: '" + p.getStagione() + "', stats: { ");
+                        for (String col : g.getIntestazioniColonne()) {
+                            Object val = p.getStatistiche().get(col);
+                            if (val != null) {
+                                String valStr = val.toString().replace(",", ".").replace("%","").replace("+","");
+                                writer.print("'" + col + "': " + valStr + ", ");
+                            }
+                        }
+                        writer.println("} },");
+                    }
+                    writer.println("                    ];");
+                    writer.println("                    multiSeasonGuestsData[" + i + "] = [");
+                    for (Punteggio p : g.getOspiti()) {
                         writer.print("                        { giocatore: '" + p.getNomeGiocatore().replace("'", "\\'") + "', stagione: '" + p.getStagione() + "', stats: { ");
                         for (String col : g.getIntestazioniColonne()) {
                             Object val = p.getStatistiche().get(col);
@@ -188,16 +204,18 @@ public class HtmlGenerator {
                         colIndex++;
                     }
                     writer.println("                    </tr></thead>");
-                    writer.println("                    <tbody>");
+                    writer.println("                    <tbody id=\"tbody_ospiti_" + i + "\">");
                     
-                    for (Punteggio p : ospiti) {
-                        writer.println("                        <tr>");
-                        writer.println("                            <td class=\"player-name\">" + p.getNomeGiocatore() + "</td>");
-                        for (String col : g.getIntestazioniColonne()) {
-                            Object val = p.getStatistiche().get(col);
-                            writer.println("                            <td>" + (val != null ? val : "-") + "</td>");
+                    if (!hasSeasons) {
+                        for (Punteggio p : ospiti) {
+                            writer.println("                        <tr>");
+                            writer.println("                            <td class=\"player-name\">" + p.getNomeGiocatore() + "</td>");
+                            for (String col : g.getIntestazioniColonne()) {
+                                Object val = p.getStatistiche().get(col);
+                                writer.println("                            <td>" + (val != null ? val : "-") + "</td>");
+                            }
+                            writer.println("                        </tr>");
                         }
-                        writer.println("                        </tr>");
                     }
                     
                     writer.println("                    </tbody>");
@@ -225,52 +243,56 @@ public class HtmlGenerator {
             writer.println("        }");
             
             // Render dinamico per le stagioni
-            writer.println("        function renderMultiSeason(gameIndex) {");
             writer.println("            const container = document.getElementById('gioco_' + gameIndex);");
             writer.println("            const checkboxes = container.querySelectorAll('.season-filters input[type=checkbox]:checked');");
             writer.println("            const selectedSeasons = Array.from(checkboxes).map(c => c.value);");
-            writer.println("            const rawData = multiSeasonData[gameIndex];");
+            writer.println("            const rawData = multiSeasonData[gameIndex] || [];");
+            writer.println("            const rawGuestsData = multiSeasonGuestsData[gameIndex] || [];");
             writer.println("            ");
-            writer.println("            const aggregated = {};");
-            writer.println("            rawData.forEach(row => {");
-            writer.println("                if (selectedSeasons.includes(row.stagione)) {");
-            writer.println("                    if (!aggregated[row.giocatore]) {");
-            writer.println("                        aggregated[row.giocatore] = { ");
-            writer.println("                           giocatore: row.giocatore, ");
-            writer.println("                           Partecipazioni: 0, ");
-            writer.println("                           'Elenchi vinti': 0,");
-            writer.println("                           'Punti totali': 0 ");
-            writer.println("                        };");
+            writer.println("            function renderGroup(dataList, tbodyId, tableId) {");
+            writer.println("                const aggregated = {};");
+            writer.println("                dataList.forEach(row => {");
+            writer.println("                    if (selectedSeasons.includes(row.stagione)) {");
+            writer.println("                        if (!aggregated[row.giocatore]) {");
+            writer.println("                            aggregated[row.giocatore] = { ");
+            writer.println("                               giocatore: row.giocatore, ");
+            writer.println("                               Partecipazioni: 0, ");
+            writer.println("                               'Elenchi vinti': 0,");
+            writer.println("                               'Punti totali': 0 ");
+            writer.println("                            };");
+            writer.println("                        }");
+            writer.println("                        aggregated[row.giocatore].Partecipazioni += row.stats['Partecipazioni'] || 0;");
+            writer.println("                        aggregated[row.giocatore]['Elenchi vinti'] += row.stats['Elenchi vinti'] || 0;");
+            writer.println("                        aggregated[row.giocatore]['Punti totali'] += row.stats['Punti totali'] || 0;");
             writer.println("                    }");
-            writer.println("                    aggregated[row.giocatore].Partecipazioni += row.stats['Partecipazioni'] || 0;");
-            writer.println("                    aggregated[row.giocatore]['Elenchi vinti'] += row.stats['Elenchi vinti'] || 0;");
-            writer.println("                    aggregated[row.giocatore]['Punti totali'] += row.stats['Punti totali'] || 0;");
-            writer.println("                }");
-            writer.println("            });");
-            writer.println("            ");
-            writer.println("            const tbody = document.getElementById('tbody_' + gameIndex);");
-            writer.println("            tbody.innerHTML = '';");
-            writer.println("            ");
-            writer.println("            Object.values(aggregated).forEach(p => {");
-            writer.println("                if(p.Partecipazioni === 0) return;");
-            writer.println("                let winPct = ((p['Elenchi vinti'] / p.Partecipazioni) * 100).toFixed(1) + '%';");
-            writer.println("                let mediaElenco = (p['Punti totali'] / p.Partecipazioni).toFixed(2);");
-            writer.println("                let mediaGara = (p['Punti totali'] / (p.Partecipazioni * 4)).toFixed(2);");
+            writer.println("                });");
             writer.println("                ");
-            writer.println("                let tr = document.createElement('tr');");
-            writer.println("                tr.innerHTML = `");
-            writer.println("                    <td class=\"player-name\">${p.giocatore}</td>");
-            writer.println("                    <td>${p.Partecipazioni}</td>");
-            writer.println("                    <td>${p['Elenchi vinti']}</td>");
-            writer.println("                    <td>${winPct}</td>");
-            writer.println("                    <td>${mediaElenco}</td>");
-            writer.println("                    <td>${mediaGara}</td>");
-            writer.println("                    <td>${p['Punti totali']}</td>");
-            writer.println("                `;");
-            writer.println("                tbody.appendChild(tr);");
-            writer.println("            });");
-            writer.println("            ");
-            writer.println("            sortTable('table_' + gameIndex, 1);"); // Riordina sempre dopo il render
+            writer.println("                const tbody = document.getElementById(tbodyId);");
+            writer.println("                if (!tbody) return;");
+            writer.println("                tbody.innerHTML = '';");
+            writer.println("                ");
+            writer.println("                Object.values(aggregated).forEach(p => {");
+            writer.println("                    if(p.Partecipazioni === 0) return;");
+            writer.println("                    let winPct = ((p['Elenchi vinti'] / p.Partecipazioni) * 100).toFixed(1) + '%';");
+            writer.println("                    let mediaElenco = (p['Punti totali'] / p.Partecipazioni).toFixed(2);");
+            writer.println("                    let mediaGara = (p['Punti totali'] / (p.Partecipazioni * 4)).toFixed(2);");
+            writer.println("                    ");
+            writer.println("                    let tr = document.createElement('tr');");
+            writer.println("                    tr.innerHTML = `");
+            writer.println("                        <td class=\"player-name\">${p.giocatore}</td>");
+            writer.println("                        <td>${p.Partecipazioni}</td>");
+            writer.println("                        <td>${p['Elenchi vinti']}</td>");
+            writer.println("                        <td>${winPct}</td>");
+            writer.println("                        <td>${mediaElenco}</td>");
+            writer.println("                        <td>${mediaGara}</td>");
+            writer.println("                        <td>${p['Punti totali']}</td>");
+            writer.println("                    `;");
+            writer.println("                    tbody.appendChild(tr);");
+            writer.println("                });");
+            writer.println("                sortTable(tableId, 1);");
+            writer.println("            }");
+            writer.println("            renderGroup(rawData, 'tbody_' + gameIndex, 'table_' + gameIndex);");
+            writer.println("            renderGroup(rawGuestsData, 'tbody_ospiti_' + gameIndex, 'table_ospiti_' + gameIndex);");
             writer.println("        }");
 
             writer.println("        function sortTable(tableId, n) {");
