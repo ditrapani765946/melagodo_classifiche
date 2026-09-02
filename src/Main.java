@@ -106,7 +106,7 @@ public class Main {
 
         Punteggio s25_6 = new Punteggio("JMarzaa", "2025");
         s25_6.addStat("Partecipazioni", 2); s25_6.addStat("Elenchi vinti", 1); s25_6.addStat("Win %", "50%"); s25_6.addStat("Media punti elenco", 42.00); s25_6.addStat("Media punti gara", 10.50); s25_6.addStat("Punti totali", 84);
-        sdrogocorse.aggiungiPunteggio(s25_6);
+        sdrogocorse.aggiungiOspite(s25_6);
 
         Punteggio s25_7 = new Punteggio("GaBbODSQUARED", "2025");
         s25_7.addStat("Partecipazioni", 8); s25_7.addStat("Elenchi vinti", 0); s25_7.addStat("Win %", "0%"); s25_7.addStat("Media punti elenco", 35.25); s25_7.addStat("Media punti gara", 8.81); s25_7.addStat("Punti totali", 282);
