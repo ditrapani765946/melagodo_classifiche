@@ -101,8 +101,71 @@ public class Main {
 
 
         // ----------------- SDROGOCORSE -----------------
-        List<String> colonneSdrogocorse = Arrays.asList("Gare Giocate", "Podi", "Win %");
+        List<String> colonneSdrogocorse = Arrays.asList("Partecipazioni", "Elenchi vinti", "Win %", "Media punti elenco", "Media punti gara", "Punti totali");
         Gioco sdrogocorse = new Gioco("Sdrogocorse", colonneSdrogocorse);
+        
+        Punteggio p1 = new Punteggio("Mollura-");
+        p1.addStat("Partecipazioni", 12);
+        p1.addStat("Elenchi vinti", 5);
+        p1.addStat("Win %", "42%");
+        p1.addStat("Media punti elenco", 38.67);
+        p1.addStat("Media punti gara", 9.47);
+        p1.addStat("Punti totali", 464);
+        sdrogocorse.aggiungiPunteggio(p1);
+
+        Punteggio p2 = new Punteggio("GaBbODSQUARED");
+        p2.addStat("Partecipazioni", 17);
+        p2.addStat("Elenchi vinti", 4);
+        p2.addStat("Win %", "24%");
+        p2.addStat("Media punti elenco", 34.00);
+        p2.addStat("Media punti gara", 8.50);
+        p2.addStat("Punti totali", 578);
+        sdrogocorse.aggiungiPunteggio(p2);
+
+        Punteggio p3 = new Punteggio("Deluxiah");
+        p3.addStat("Partecipazioni", 22);
+        p3.addStat("Elenchi vinti", 5);
+        p3.addStat("Win %", "23%");
+        p3.addStat("Media punti elenco", 37.50);
+        p3.addStat("Media punti gara", 9.38);
+        p3.addStat("Punti totali", 825);
+        sdrogocorse.aggiungiPunteggio(p3);
+
+        Punteggio p4 = new Punteggio("ilMasseo");
+        p4.addStat("Partecipazioni", 21);
+        p4.addStat("Elenchi vinti", 4);
+        p4.addStat("Win %", "19%");
+        p4.addStat("Media punti elenco", 37.10);
+        p4.addStat("Media punti gara", 9.16);
+        p4.addStat("Punti totali", 779);
+        sdrogocorse.aggiungiPunteggio(p4);
+
+        Punteggio p5 = new Punteggio("JRohn7");
+        p5.addStat("Partecipazioni", 20);
+        p5.addStat("Elenchi vinti", 3);
+        p5.addStat("Win %", "15%");
+        p5.addStat("Media punti elenco", 34.80);
+        p5.addStat("Media punti gara", 8.59);
+        p5.addStat("Punti totali", 696);
+        sdrogocorse.aggiungiPunteggio(p5);
+
+        Punteggio p6 = new Punteggio("TITTI-2");
+        p6.addStat("Partecipazioni", 14);
+        p6.addStat("Elenchi vinti", 2);
+        p6.addStat("Win %", "14%");
+        p6.addStat("Media punti elenco", 28.36);
+        p6.addStat("Media punti gara", 7.09);
+        p6.addStat("Punti totali", 397);
+        sdrogocorse.aggiungiPunteggio(p6);
+
+        Punteggio p7 = new Punteggio("StillDread");
+        p7.addStat("Partecipazioni", 22);
+        p7.addStat("Elenchi vinti", 1);
+        p7.addStat("Win %", "5%");
+        p7.addStat("Media punti elenco", 32.82);
+        p7.addStat("Media punti gara", 8.11);
+        p7.addStat("Punti totali", 722);
+        sdrogocorse.aggiungiPunteggio(p7);
 
         List<Gioco> giochi = new ArrayList<>();
         giochi.add(golfatine);
