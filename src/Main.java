@@ -100,9 +100,9 @@ public class Main {
         golfatine.aggiungiOspite(fava);
 
 
-        // ----------------- SDROGOCORSE -----------------
+        // ----------------- SDROGOCORSE 2026 -----------------
         List<String> colonneSdrogocorse = Arrays.asList("Partecipazioni", "Elenchi vinti", "Win %", "Media punti elenco", "Media punti gara", "Punti totali");
-        Gioco sdrogocorse = new Gioco("Sdrogocorse", colonneSdrogocorse);
+        Gioco sdrogocorse = new Gioco("Sdrogocorse 2026", colonneSdrogocorse);
         
         Punteggio p1 = new Punteggio("Mollura-");
         p1.addStat("Partecipazioni", 12);
@@ -167,9 +167,87 @@ public class Main {
         p7.addStat("Punti totali", 722);
         sdrogocorse.aggiungiPunteggio(p7);
 
+        // ----------------- SDROGOCORSE 2025 -----------------
+        Gioco sdrogocorse2025 = new Gioco("Sdrogocorse 2025", colonneSdrogocorse);
+
+        Punteggio s25_1 = new Punteggio("Deluxiah");
+        s25_1.addStat("Partecipazioni", 11);
+        s25_1.addStat("Elenchi vinti", 7);
+        s25_1.addStat("Win %", "64%");
+        s25_1.addStat("Media punti elenco", 47.64);
+        s25_1.addStat("Media punti gara", 11.91);
+        s25_1.addStat("Punti totali", 524);
+        sdrogocorse2025.aggiungiPunteggio(s25_1);
+
+        Punteggio s25_2 = new Punteggio("JRohn7");
+        s25_2.addStat("Partecipazioni", 12);
+        s25_2.addStat("Elenchi vinti", 1);
+        s25_2.addStat("Win %", "8%");
+        s25_2.addStat("Media punti elenco", 36.92);
+        s25_2.addStat("Media punti gara", 9.23);
+        s25_2.addStat("Punti totali", 443);
+        sdrogocorse2025.aggiungiPunteggio(s25_2);
+
+        Punteggio s25_3 = new Punteggio("StillDread");
+        s25_3.addStat("Partecipazioni", 12);
+        s25_3.addStat("Elenchi vinti", 1);
+        s25_3.addStat("Win %", "8%");
+        s25_3.addStat("Media punti elenco", 30.67);
+        s25_3.addStat("Media punti gara", 7.67);
+        s25_3.addStat("Punti totali", 368);
+        sdrogocorse2025.aggiungiPunteggio(s25_3);
+
+        Punteggio s25_4 = new Punteggio("ilMasseo");
+        s25_4.addStat("Partecipazioni", 9);
+        s25_4.addStat("Elenchi vinti", 1);
+        s25_4.addStat("Win %", "11%");
+        s25_4.addStat("Media punti elenco", 31.44);
+        s25_4.addStat("Media punti gara", 7.86);
+        s25_4.addStat("Punti totali", 283);
+        sdrogocorse2025.aggiungiPunteggio(s25_4);
+
+        Punteggio s25_5 = new Punteggio("Mollura-");
+        s25_5.addStat("Partecipazioni", 5);
+        s25_5.addStat("Elenchi vinti", 1);
+        s25_5.addStat("Win %", "20%");
+        s25_5.addStat("Media punti elenco", 36.80);
+        s25_5.addStat("Media punti gara", 9.20);
+        s25_5.addStat("Punti totali", 184);
+        sdrogocorse2025.aggiungiPunteggio(s25_5);
+
+        Punteggio s25_6 = new Punteggio("JMarzaa");
+        s25_6.addStat("Partecipazioni", 2);
+        s25_6.addStat("Elenchi vinti", 1);
+        s25_6.addStat("Win %", "50%");
+        s25_6.addStat("Media punti elenco", 42.00);
+        s25_6.addStat("Media punti gara", 10.50);
+        s25_6.addStat("Punti totali", 84);
+        sdrogocorse2025.aggiungiPunteggio(s25_6);
+
+        Punteggio s25_7 = new Punteggio("GaBbODSQUARED");
+        s25_7.addStat("Partecipazioni", 8);
+        s25_7.addStat("Elenchi vinti", 0);
+        s25_7.addStat("Win %", "0%");
+        s25_7.addStat("Media punti elenco", 35.25);
+        s25_7.addStat("Media punti gara", 8.81);
+        s25_7.addStat("Punti totali", 282);
+        sdrogocorse2025.aggiungiPunteggio(s25_7);
+
+        Punteggio s25_8 = new Punteggio("TITTI-2");
+        s25_8.addStat("Partecipazioni", 2);
+        s25_8.addStat("Elenchi vinti", 0);
+        s25_8.addStat("Win %", "0%");
+        s25_8.addStat("Media punti elenco", 35.00);
+        s25_8.addStat("Media punti gara", 8.75);
+        s25_8.addStat("Punti totali", 70);
+        sdrogocorse2025.aggiungiPunteggio(s25_8);
+
+
+        // ----------------- GENERAZIONE -----------------
         List<Gioco> giochi = new ArrayList<>();
         giochi.add(golfatine);
         giochi.add(sdrogocorse);
+        giochi.add(sdrogocorse2025);
 
         HtmlGenerator generator = new HtmlGenerator();
         generator.generaSito(giochi, "index.html");
