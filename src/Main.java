@@ -250,6 +250,6 @@ public class Main {
         giochi.add(sdrogocorse2025);
 
         HtmlGenerator generator = new HtmlGenerator();
-        generator.generaSito(giochi, "index.html");
+        generator.generaSito(giochi, "../index.html");
     }
 }
