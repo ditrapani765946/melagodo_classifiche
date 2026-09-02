@@ -1,6 +1,7 @@
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -30,15 +31,10 @@ public class HtmlGenerator {
             writer.println("            --guest-color: #f59e0b;");
             writer.println("        }");
             writer.println("        body {");
-            writer.println("            margin: 0;");
-            writer.println("            padding: 0;");
-            writer.println("            background-color: var(--bg-color);");
-            writer.println("            color: var(--text-primary);");
-            writer.println("            font-family: 'Inter', sans-serif;");
-            writer.println("            min-height: 100vh;");
-            writer.println("            display: flex;");
-            writer.println("            flex-direction: column;");
-            writer.println("            align-items: center;");
+            writer.println("            margin: 0; padding: 0;");
+            writer.println("            background-color: var(--bg-color); color: var(--text-primary);");
+            writer.println("            font-family: 'Inter', sans-serif; min-height: 100vh;");
+            writer.println("            display: flex; flex-direction: column; align-items: center;");
             writer.println("            background: radial-gradient(circle at top, #1e293b 0%, #0f172a 100%);");
             writer.println("        }");
             writer.println("        header { margin-top: 50px; text-align: center; }");
@@ -48,7 +44,7 @@ public class HtmlGenerator {
             writer.println("            -webkit-background-clip: text; -webkit-text-fill-color: transparent;");
             writer.println("            text-shadow: 0px 4px 15px rgba(96, 165, 250, 0.3); margin: 0;");
             writer.println("        }");
-            writer.println("        .tabs { display: flex; gap: 15px; margin-top: 40px; margin-bottom: 20px; }");
+            writer.println("        .tabs { display: flex; gap: 15px; margin-top: 40px; margin-bottom: 20px; flex-wrap: wrap; justify-content: center; }");
             writer.println("        .tab-button {");
             writer.println("            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);");
             writer.println("            color: var(--text-primary); padding: 10px 25px; border-radius: 30px;");
@@ -79,6 +75,9 @@ public class HtmlGenerator {
             writer.println("        tbody tr:hover { transform: scale(1.01); background: rgba(255,255,255,0.03); border-radius: 8px; }");
             writer.println("        .player-name { font-weight: 600; font-size: 1.1rem; }");
             writer.println("        .sort-icon { font-size: 0.8rem; margin-left: 5px; opacity: 0.7; }");
+            writer.println("        .season-filters { margin-bottom: 20px; display: flex; gap: 15px; align-items: center; background: rgba(0,0,0,0.2); padding: 15px; border-radius: 10px; }");
+            writer.println("        .season-filters label { cursor: pointer; display: flex; align-items: center; gap: 5px; font-weight: bold; }");
+            writer.println("        .season-filters input { width: 18px; height: 18px; accent-color: var(--accent-color); cursor: pointer; }");
             writer.println("    </style>");
             writer.println("</head>");
             writer.println("<body>");
@@ -93,15 +92,55 @@ public class HtmlGenerator {
                 writer.println("        <button class=\"tab-button " + activeClass + "\" onclick=\"openTab(event, 'gioco_" + i + "')\">" + giochi.get(i).getNome() + "</button>");
             }
             writer.println("    </div>");
+            
+            writer.println("    <script>");
+            writer.println("        const multiSeasonData = {};");
+            writer.println("    </script>");
 
             writer.println("    <div class=\"content-container\">");
             for (int i = 0; i < giochi.size(); i++) {
                 Gioco g = giochi.get(i);
                 String activeClass = (i == 0) ? "active" : "";
                 
+                // Controlla se il gioco ha stagioni
+                boolean hasSeasons = false;
+                List<String> stagioni = new ArrayList<>();
+                for (Punteggio p : g.getClassifica()) {
+                    if (p.getStagione() != null) {
+                        hasSeasons = true;
+                        if (!stagioni.contains(p.getStagione())) stagioni.add(p.getStagione());
+                    }
+                }
+                
                 writer.println("        <div id=\"gioco_" + i + "\" class=\"leaderboard " + activeClass + "\">");
                 writer.println("            <div class=\"card\">");
                 writer.println("                <h2 class=\"section-title\">Classifica Ufficiale</h2>");
+                
+                if (hasSeasons) {
+                    writer.println("                <div class=\"season-filters\">");
+                    writer.println("                    <span>Seleziona Stagioni da sommare:</span>");
+                    for(String s : stagioni) {
+                        writer.println("                    <label><input type=\"checkbox\" value=\"" + s + "\" checked onchange=\"renderMultiSeason(" + i + ")\"> " + s + "</label>");
+                    }
+                    writer.println("                </div>");
+                    
+                    // Inietta i dati JSON
+                    writer.println("                <script>");
+                    writer.println("                    multiSeasonData[" + i + "] = [");
+                    for (Punteggio p : g.getClassifica()) {
+                        writer.print("                        { giocatore: '" + p.getNomeGiocatore().replace("'", "\\'") + "', stagione: '" + p.getStagione() + "', stats: { ");
+                        for (String col : g.getIntestazioniColonne()) {
+                            Object val = p.getStatistiche().get(col);
+                            if (val != null) {
+                                String valStr = val.toString().replace(",", ".").replace("%","").replace("+","");
+                                writer.print("'" + col + "': " + valStr + ", ");
+                            }
+                        }
+                        writer.println("} },");
+                    }
+                    writer.println("                    ];");
+                    writer.println("                </script>");
+                }
                 
                 List<Punteggio> classifica = g.getClassifica();
                 if (classifica.isEmpty()) {
@@ -117,16 +156,18 @@ public class HtmlGenerator {
                         colIndex++;
                     }
                     writer.println("                    </tr></thead>");
-                    writer.println("                    <tbody>");
+                    writer.println("                    <tbody id=\"tbody_" + i + "\">");
                     
-                    for (Punteggio p : classifica) {
-                        writer.println("                        <tr>");
-                        writer.println("                            <td class=\"player-name\">" + p.getNomeGiocatore() + "</td>");
-                        for (String col : g.getIntestazioniColonne()) {
-                            Object val = p.getStatistiche().get(col);
-                            writer.println("                            <td>" + (val != null ? val : "-") + "</td>");
+                    if (!hasSeasons) {
+                        for (Punteggio p : classifica) {
+                            writer.println("                        <tr>");
+                            writer.println("                            <td class=\"player-name\">" + p.getNomeGiocatore() + "</td>");
+                            for (String col : g.getIntestazioniColonne()) {
+                                Object val = p.getStatistiche().get(col);
+                                writer.println("                            <td>" + (val != null ? val : "-") + "</td>");
+                            }
+                            writer.println("                        </tr>");
                         }
-                        writer.println("                        </tr>");
                     }
                     
                     writer.println("                    </tbody>");
@@ -183,12 +224,60 @@ public class HtmlGenerator {
             writer.println("            evt.currentTarget.className += \" active\";");
             writer.println("        }");
             
+            // Render dinamico per le stagioni
+            writer.println("        function renderMultiSeason(gameIndex) {");
+            writer.println("            const container = document.getElementById('gioco_' + gameIndex);");
+            writer.println("            const checkboxes = container.querySelectorAll('.season-filters input[type=checkbox]:checked');");
+            writer.println("            const selectedSeasons = Array.from(checkboxes).map(c => c.value);");
+            writer.println("            const rawData = multiSeasonData[gameIndex];");
+            writer.println("            ");
+            writer.println("            const aggregated = {};");
+            writer.println("            rawData.forEach(row => {");
+            writer.println("                if (selectedSeasons.includes(row.stagione)) {");
+            writer.println("                    if (!aggregated[row.giocatore]) {");
+            writer.println("                        aggregated[row.giocatore] = { ");
+            writer.println("                           giocatore: row.giocatore, ");
+            writer.println("                           Partecipazioni: 0, ");
+            writer.println("                           'Elenchi vinti': 0,");
+            writer.println("                           'Punti totali': 0 ");
+            writer.println("                        };");
+            writer.println("                    }");
+            writer.println("                    aggregated[row.giocatore].Partecipazioni += row.stats['Partecipazioni'] || 0;");
+            writer.println("                    aggregated[row.giocatore]['Elenchi vinti'] += row.stats['Elenchi vinti'] || 0;");
+            writer.println("                    aggregated[row.giocatore]['Punti totali'] += row.stats['Punti totali'] || 0;");
+            writer.println("                }");
+            writer.println("            });");
+            writer.println("            ");
+            writer.println("            const tbody = document.getElementById('tbody_' + gameIndex);");
+            writer.println("            tbody.innerHTML = '';");
+            writer.println("            ");
+            writer.println("            Object.values(aggregated).forEach(p => {");
+            writer.println("                if(p.Partecipazioni === 0) return;");
+            writer.println("                let winPct = ((p['Elenchi vinti'] / p.Partecipazioni) * 100).toFixed(1) + '%';");
+            writer.println("                let mediaElenco = (p['Punti totali'] / p.Partecipazioni).toFixed(2);");
+            writer.println("                let mediaGara = (p['Punti totali'] / (p.Partecipazioni * 4)).toFixed(2);");
+            writer.println("                ");
+            writer.println("                let tr = document.createElement('tr');");
+            writer.println("                tr.innerHTML = `");
+            writer.println("                    <td class=\"player-name\">${p.giocatore}</td>");
+            writer.println("                    <td>${p.Partecipazioni}</td>");
+            writer.println("                    <td>${p['Elenchi vinti']}</td>");
+            writer.println("                    <td>${winPct}</td>");
+            writer.println("                    <td>${mediaElenco}</td>");
+            writer.println("                    <td>${mediaGara}</td>");
+            writer.println("                    <td>${p['Punti totali']}</td>");
+            writer.println("                `;");
+            writer.println("                tbody.appendChild(tr);");
+            writer.println("            });");
+            writer.println("            ");
+            writer.println("            sortTable('table_' + gameIndex, 1);"); // Riordina sempre dopo il render
+            writer.println("        }");
+
             writer.println("        function sortTable(tableId, n) {");
             writer.println("            var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;");
             writer.println("            table = document.getElementById(tableId);");
-            writer.println("            if (!table) return;");
-            writer.println("            switching = true;");
-            writer.println("            dir = \"desc\";"); // Default a decrescente per i punteggi
+            writer.println("            if (!table || !table.rows || table.rows.length <= 1) return;");
+            writer.println("            switching = true; dir = \"desc\";");
             writer.println("            while (switching) {");
             writer.println("                switching = false;");
             writer.println("                rows = table.rows;");
@@ -196,6 +285,7 @@ public class HtmlGenerator {
             writer.println("                    shouldSwitch = false;");
             writer.println("                    x = rows[i].getElementsByTagName(\"TD\")[n];");
             writer.println("                    y = rows[i + 1].getElementsByTagName(\"TD\")[n];");
+            writer.println("                    if(!x || !y) continue;");
             writer.println("                    var valX = x.innerHTML.toLowerCase();");
             writer.println("                    var valY = y.innerHTML.toLowerCase();");
             writer.println("                    var numX = parseFloat(valX.replace(/[^0-9.-]+/g,\"\"));");
@@ -209,21 +299,17 @@ public class HtmlGenerator {
             writer.println("                }");
             writer.println("                if (shouldSwitch) {");
             writer.println("                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);");
-            writer.println("                    switching = true;");
-            writer.println("                    switchcount ++;");
+            writer.println("                    switching = true; switchcount ++;");
             writer.println("                } else {");
-            writer.println("                    if (switchcount == 0 && dir == \"desc\") {");
-            writer.println("                        dir = \"asc\";");
-            writer.println("                        switching = true;");
-            writer.println("                    }");
+            writer.println("                    if (switchcount == 0 && dir == \"desc\") { dir = \"asc\"; switching = true; }");
             writer.println("                }");
             writer.println("            }");
             writer.println("        }");
             
-            // Ordina la prima colonna della prima tabella di default
             writer.println("        window.onload = function() {");
             writer.println("            if(document.getElementById('table_0')) { sortTable('table_0', 1); }");
             writer.println("            if(document.getElementById('table_ospiti_0')) { sortTable('table_ospiti_0', 1); }");
+            writer.println("            Object.keys(multiSeasonData).forEach(idx => renderMultiSeason(idx));");
             writer.println("        };");
             writer.println("    </script>");
             
