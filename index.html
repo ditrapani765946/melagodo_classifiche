@@ -264,6 +264,7 @@
             document.getElementById(gameId).className += " active";
             evt.currentTarget.className += " active";
         }
+        function renderMultiSeason(gameIndex) {
             const container = document.getElementById('gioco_' + gameIndex);
             const checkboxes = container.querySelectorAll('.season-filters input[type=checkbox]:checked');
             const selectedSeasons = Array.from(checkboxes).map(c => c.value);

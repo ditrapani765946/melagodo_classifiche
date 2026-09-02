@@ -243,6 +243,7 @@ public class HtmlGenerator {
             writer.println("        }");
             
             // Render dinamico per le stagioni
+            writer.println("        function renderMultiSeason(gameIndex) {");
             writer.println("            const container = document.getElementById('gioco_' + gameIndex);");
             writer.println("            const checkboxes = container.querySelectorAll('.season-filters input[type=checkbox]:checked');");
             writer.println("            const selectedSeasons = Array.from(checkboxes).map(c => c.value);");
