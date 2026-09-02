@@ -95,6 +95,7 @@ public class HtmlGenerator {
             
             writer.println("    <script>");
             writer.println("        const multiSeasonData = {};");
+            writer.println("        const multiSeasonGuestsData = {};");
             writer.println("    </script>");
 
             writer.println("    <div class=\"content-container\">");
@@ -127,8 +128,6 @@ public class HtmlGenerator {
                     
                     // Inietta i dati JSON
                     writer.println("                <script>");
-                    writer.println("                    if(typeof multiSeasonData === 'undefined') var multiSeasonData = {};");
-                    writer.println("                    if(typeof multiSeasonGuestsData === 'undefined') var multiSeasonGuestsData = {};");
                     writer.println("                    multiSeasonData[" + i + "] = [");
                     for (Punteggio p : g.getClassifica()) {
                         writer.print("                        { giocatore: '" + p.getNomeGiocatore().replace("'", "\\'") + "', stagione: '" + p.getStagione() + "', stats: { ");
@@ -164,11 +163,11 @@ public class HtmlGenerator {
                 } else {
                     writer.println("                <table id=\"table_" + i + "\">");
                     writer.println("                    <thead><tr>");
-                    writer.println("                        <th onclick=\"sortTable('table_" + i + "', 0)\">Giocatore <span class=\"sort-icon\">↕</span></th>");
+                    writer.println("                        <th onclick=\"sortTable('table_" + i + "', 0)\">Giocatore <span class=\"sort-icon\">&#8597;</span></th>");
                     
                     int colIndex = 1;
                     for (String col : g.getIntestazioniColonne()) {
-                        writer.println("                        <th onclick=\"sortTable('table_" + i + "', " + colIndex + ")\">" + col + " <span class=\"sort-icon\">↕</span></th>");
+                        writer.println("                        <th onclick=\"sortTable('table_" + i + "', " + colIndex + ")\">" + col + " <span class=\"sort-icon\">&#8597;</span></th>");
                         colIndex++;
                     }
                     writer.println("                    </tr></thead>");
@@ -196,11 +195,11 @@ public class HtmlGenerator {
                     writer.println("                <h2 class=\"section-title guests-title\">Ospiti d'Onore</h2>");
                     writer.println("                <table id=\"table_ospiti_" + i + "\" class=\"guests-table\">");
                     writer.println("                    <thead><tr>");
-                    writer.println("                        <th onclick=\"sortTable('table_ospiti_" + i + "', 0)\">Ospite <span class=\"sort-icon\">↕</span></th>");
+                    writer.println("                        <th onclick=\"sortTable('table_ospiti_" + i + "', 0)\">Ospite <span class=\"sort-icon\">&#8597;</span></th>");
                     
                     int colIndex = 1;
                     for (String col : g.getIntestazioniColonne()) {
-                        writer.println("                        <th onclick=\"sortTable('table_ospiti_" + i + "', " + colIndex + ")\">" + col + " <span class=\"sort-icon\">↕</span></th>");
+                        writer.println("                        <th onclick=\"sortTable('table_ospiti_" + i + "', " + colIndex + ")\">" + col + " <span class=\"sort-icon\">&#8597;</span></th>");
                         colIndex++;
                     }
                     writer.println("                    </tr></thead>");

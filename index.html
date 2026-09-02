@@ -77,6 +77,7 @@
     </div>
     <script>
         const multiSeasonData = {};
+        const multiSeasonGuestsData = {};
     </script>
     <div class="content-container">
         <div id="gioco_0" class="leaderboard active">
@@ -84,12 +85,12 @@
                 <h2 class="section-title">Classifica Ufficiale</h2>
                 <table id="table_0">
                     <thead><tr>
-                        <th onclick="sortTable('table_0', 0)">Giocatore <span class="sort-icon">↕</span></th>
-                        <th onclick="sortTable('table_0', 1)">Partite Giocate <span class="sort-icon">↕</span></th>
-                        <th onclick="sortTable('table_0', 2)">Vittorie <span class="sort-icon">↕</span></th>
-                        <th onclick="sortTable('table_0', 3)">Win % <span class="sort-icon">↕</span></th>
-                        <th onclick="sortTable('table_0', 4)">Media Punti <span class="sort-icon">↕</span></th>
-                        <th onclick="sortTable('table_0', 5)">Over/Under Par <span class="sort-icon">↕</span></th>
+                        <th onclick="sortTable('table_0', 0)">Giocatore <span class="sort-icon">&#8597;</span></th>
+                        <th onclick="sortTable('table_0', 1)">Partite Giocate <span class="sort-icon">&#8597;</span></th>
+                        <th onclick="sortTable('table_0', 2)">Vittorie <span class="sort-icon">&#8597;</span></th>
+                        <th onclick="sortTable('table_0', 3)">Win % <span class="sort-icon">&#8597;</span></th>
+                        <th onclick="sortTable('table_0', 4)">Media Punti <span class="sort-icon">&#8597;</span></th>
+                        <th onclick="sortTable('table_0', 5)">Over/Under Par <span class="sort-icon">&#8597;</span></th>
                     </tr></thead>
                     <tbody id="tbody_0">
                         <tr>
@@ -153,12 +154,12 @@
                 <h2 class="section-title guests-title">Ospiti d'Onore</h2>
                 <table id="table_ospiti_0" class="guests-table">
                     <thead><tr>
-                        <th onclick="sortTable('table_ospiti_0', 0)">Ospite <span class="sort-icon">↕</span></th>
-                        <th onclick="sortTable('table_ospiti_0', 1)">Partite Giocate <span class="sort-icon">↕</span></th>
-                        <th onclick="sortTable('table_ospiti_0', 2)">Vittorie <span class="sort-icon">↕</span></th>
-                        <th onclick="sortTable('table_ospiti_0', 3)">Win % <span class="sort-icon">↕</span></th>
-                        <th onclick="sortTable('table_ospiti_0', 4)">Media Punti <span class="sort-icon">↕</span></th>
-                        <th onclick="sortTable('table_ospiti_0', 5)">Over/Under Par <span class="sort-icon">↕</span></th>
+                        <th onclick="sortTable('table_ospiti_0', 0)">Ospite <span class="sort-icon">&#8597;</span></th>
+                        <th onclick="sortTable('table_ospiti_0', 1)">Partite Giocate <span class="sort-icon">&#8597;</span></th>
+                        <th onclick="sortTable('table_ospiti_0', 2)">Vittorie <span class="sort-icon">&#8597;</span></th>
+                        <th onclick="sortTable('table_ospiti_0', 3)">Win % <span class="sort-icon">&#8597;</span></th>
+                        <th onclick="sortTable('table_ospiti_0', 4)">Media Punti <span class="sort-icon">&#8597;</span></th>
+                        <th onclick="sortTable('table_ospiti_0', 5)">Over/Under Par <span class="sort-icon">&#8597;</span></th>
                     </tr></thead>
                     <tbody id="tbody_ospiti_0">
                         <tr>
@@ -198,8 +199,6 @@
                     <label><input type="checkbox" value="2025"  onchange="renderMultiSeason(1)"> 2025</label>
                 </div>
                 <script>
-                    if(typeof multiSeasonData === 'undefined') var multiSeasonData = {};
-                    if(typeof multiSeasonGuestsData === 'undefined') var multiSeasonGuestsData = {};
                     multiSeasonData[1] = [
                         { giocatore: 'Mollura-', stagione: '2026', stats: { 'Partecipazioni': 12, 'Elenchi vinti': 5, 'Win %': 42, 'Media punti elenco': 38.67, 'Media punti gara': 9.47, 'Punti totali': 464, } },
                         { giocatore: 'GaBbODSQUARED', stagione: '2026', stats: { 'Partecipazioni': 17, 'Elenchi vinti': 4, 'Win %': 24, 'Media punti elenco': 34.0, 'Media punti gara': 8.5, 'Punti totali': 578, } },
@@ -222,13 +221,13 @@
                 </script>
                 <table id="table_1">
                     <thead><tr>
-                        <th onclick="sortTable('table_1', 0)">Giocatore <span class="sort-icon">↕</span></th>
-                        <th onclick="sortTable('table_1', 1)">Partecipazioni <span class="sort-icon">↕</span></th>
-                        <th onclick="sortTable('table_1', 2)">Elenchi vinti <span class="sort-icon">↕</span></th>
-                        <th onclick="sortTable('table_1', 3)">Win % <span class="sort-icon">↕</span></th>
-                        <th onclick="sortTable('table_1', 4)">Media punti elenco <span class="sort-icon">↕</span></th>
-                        <th onclick="sortTable('table_1', 5)">Media punti gara <span class="sort-icon">↕</span></th>
-                        <th onclick="sortTable('table_1', 6)">Punti totali <span class="sort-icon">↕</span></th>
+                        <th onclick="sortTable('table_1', 0)">Giocatore <span class="sort-icon">&#8597;</span></th>
+                        <th onclick="sortTable('table_1', 1)">Partecipazioni <span class="sort-icon">&#8597;</span></th>
+                        <th onclick="sortTable('table_1', 2)">Elenchi vinti <span class="sort-icon">&#8597;</span></th>
+                        <th onclick="sortTable('table_1', 3)">Win % <span class="sort-icon">&#8597;</span></th>
+                        <th onclick="sortTable('table_1', 4)">Media punti elenco <span class="sort-icon">&#8597;</span></th>
+                        <th onclick="sortTable('table_1', 5)">Media punti gara <span class="sort-icon">&#8597;</span></th>
+                        <th onclick="sortTable('table_1', 6)">Punti totali <span class="sort-icon">&#8597;</span></th>
                     </tr></thead>
                     <tbody id="tbody_1">
                     </tbody>
@@ -236,13 +235,13 @@
                 <h2 class="section-title guests-title">Ospiti d'Onore</h2>
                 <table id="table_ospiti_1" class="guests-table">
                     <thead><tr>
-                        <th onclick="sortTable('table_ospiti_1', 0)">Ospite <span class="sort-icon">↕</span></th>
-                        <th onclick="sortTable('table_ospiti_1', 1)">Partecipazioni <span class="sort-icon">↕</span></th>
-                        <th onclick="sortTable('table_ospiti_1', 2)">Elenchi vinti <span class="sort-icon">↕</span></th>
-                        <th onclick="sortTable('table_ospiti_1', 3)">Win % <span class="sort-icon">↕</span></th>
-                        <th onclick="sortTable('table_ospiti_1', 4)">Media punti elenco <span class="sort-icon">↕</span></th>
-                        <th onclick="sortTable('table_ospiti_1', 5)">Media punti gara <span class="sort-icon">↕</span></th>
-                        <th onclick="sortTable('table_ospiti_1', 6)">Punti totali <span class="sort-icon">↕</span></th>
+                        <th onclick="sortTable('table_ospiti_1', 0)">Ospite <span class="sort-icon">&#8597;</span></th>
+                        <th onclick="sortTable('table_ospiti_1', 1)">Partecipazioni <span class="sort-icon">&#8597;</span></th>
+                        <th onclick="sortTable('table_ospiti_1', 2)">Elenchi vinti <span class="sort-icon">&#8597;</span></th>
+                        <th onclick="sortTable('table_ospiti_1', 3)">Win % <span class="sort-icon">&#8597;</span></th>
+                        <th onclick="sortTable('table_ospiti_1', 4)">Media punti elenco <span class="sort-icon">&#8597;</span></th>
+                        <th onclick="sortTable('table_ospiti_1', 5)">Media punti gara <span class="sort-icon">&#8597;</span></th>
+                        <th onclick="sortTable('table_ospiti_1', 6)">Punti totali <span class="sort-icon">&#8597;</span></th>
                     </tr></thead>
                     <tbody id="tbody_ospiti_1">
                     </tbody>
