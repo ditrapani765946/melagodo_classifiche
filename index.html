@@ -84,16 +84,17 @@
     </style>
 </head>
 <body>
-    <header>
+    <header onclick="goHome()" style="cursor: pointer;" title="Torna alla Home">
         <h2 class="header-sub">GAMING STATS</h2>
         <h1 class="header-main">MELAGODO</h1>
     </header>
-    <div class="tabs">
-        <button class="tab-button active" onclick="openTab(event, 'gioco_0')">
+    <button id="back-button" onclick="goHome()" style="display:none; background:none; border:1px solid #333; color:#aaa; padding:10px 20px; cursor:pointer; margin-bottom:20px; align-self:flex-start;">← Torna al Menù</button>
+    <div class="tabs" id="tabs-container">
+        <button class="tab-button" onclick="openTab(event, 'gioco_0')">
             <span class="tab-sub">CLASSIFICA</span>
             <span class="tab-title">Golfatine</span>
         </button>
-        <button class="tab-button " onclick="openTab(event, 'gioco_1')">
+        <button class="tab-button" onclick="openTab(event, 'gioco_1')">
             <span class="tab-sub">CLASSIFICA</span>
             <span class="tab-title">Sdrogocorse</span>
         </button>
@@ -103,7 +104,7 @@
         const multiSeasonGuestsData = {};
     </script>
     <div class="content-container">
-        <div id="gioco_0" class="leaderboard active">
+        <div id="gioco_0" class="leaderboard">
             <div class="card">
                 <h2 class="section-title">Classifica Ufficiale</h2>
                 <table id="table_0">
@@ -213,7 +214,7 @@
                 </table>
             </div>
         </div>
-        <div id="gioco_1" class="leaderboard ">
+        <div id="gioco_1" class="leaderboard">
             <div class="card">
                 <h2 class="section-title">Classifica Ufficiale</h2>
                 <div class="season-filters">
@@ -274,6 +275,8 @@
     </div>
     <script>
         function openTab(evt, gameId) {
+            document.getElementById('tabs-container').style.display = 'none';
+            document.getElementById('back-button').style.display = 'block';
             var i, leaderboards, tabbuttons;
             leaderboards = document.getElementsByClassName("leaderboard");
             for (i = 0; i < leaderboards.length; i++) {
@@ -285,6 +288,14 @@
             }
             document.getElementById(gameId).className += " active";
             evt.currentTarget.className += " active";
+        }
+        function goHome() {
+            document.getElementById('tabs-container').style.display = 'grid';
+            document.getElementById('back-button').style.display = 'none';
+            var leaderboards = document.getElementsByClassName("leaderboard");
+            for (var i = 0; i < leaderboards.length; i++) {
+                leaderboards[i].className = leaderboards[i].className.replace(" active", "");
+            }
         }
         function renderMultiSeason(gameIndex) {
             const container = document.getElementById('gioco_' + gameIndex);

@@ -98,15 +98,16 @@ public class HtmlGenerator {
             writer.println("</head>");
             writer.println("<body>");
             
-            writer.println("    <header>");
+            writer.println("    <header onclick=\"goHome()\" style=\"cursor: pointer;\" title=\"Torna alla Home\">");
             writer.println("        <h2 class=\"header-sub\">GAMING STATS</h2>");
             writer.println("        <h1 class=\"header-main\">MELAGODO</h1>");
             writer.println("    </header>");
+            
+            writer.println("    <button id=\"back-button\" onclick=\"goHome()\" style=\"display:none; background:none; border:1px solid #333; color:#aaa; padding:10px 20px; cursor:pointer; margin-bottom:20px; align-self:flex-start;\">← Torna al Menù</button>");
 
-            writer.println("    <div class=\"tabs\">");
+            writer.println("    <div class=\"tabs\" id=\"tabs-container\">");
             for (int i = 0; i < giochi.size(); i++) {
-                String activeClass = (i == 0) ? "active" : "";
-                writer.println("        <button class=\"tab-button " + activeClass + "\" onclick=\"openTab(event, 'gioco_" + i + "')\">");
+                writer.println("        <button class=\"tab-button\" onclick=\"openTab(event, 'gioco_" + i + "')\">");
                 writer.println("            <span class=\"tab-sub\">CLASSIFICA</span>");
                 writer.println("            <span class=\"tab-title\">" + giochi.get(i).getNome() + "</span>");
                 writer.println("        </button>");
@@ -121,8 +122,6 @@ public class HtmlGenerator {
             writer.println("    <div class=\"content-container\">");
             for (int i = 0; i < giochi.size(); i++) {
                 Gioco g = giochi.get(i);
-                String activeClass = (i == 0) ? "active" : "";
-                
                 // Controlla se il gioco ha stagioni
                 boolean hasSeasons = false;
                 List<String> stagioni = new ArrayList<>();
@@ -132,8 +131,7 @@ public class HtmlGenerator {
                         if (!stagioni.contains(p.getStagione())) stagioni.add(p.getStagione());
                     }
                 }
-                
-                writer.println("        <div id=\"gioco_" + i + "\" class=\"leaderboard " + activeClass + "\">");
+                writer.println("        <div id=\"gioco_" + i + "\" class=\"leaderboard\">");
                 writer.println("            <div class=\"card\">");
                 writer.println("                <h2 class=\"section-title\">Classifica Ufficiale</h2>");
                 
@@ -248,6 +246,8 @@ public class HtmlGenerator {
 
             writer.println("    <script>");
             writer.println("        function openTab(evt, gameId) {");
+            writer.println("            document.getElementById('tabs-container').style.display = 'none';");
+            writer.println("            document.getElementById('back-button').style.display = 'block';");
             writer.println("            var i, leaderboards, tabbuttons;");
             writer.println("            leaderboards = document.getElementsByClassName(\"leaderboard\");");
             writer.println("            for (i = 0; i < leaderboards.length; i++) {");
@@ -259,6 +259,14 @@ public class HtmlGenerator {
             writer.println("            }");
             writer.println("            document.getElementById(gameId).className += \" active\";");
             writer.println("            evt.currentTarget.className += \" active\";");
+            writer.println("        }");
+            writer.println("        function goHome() {");
+            writer.println("            document.getElementById('tabs-container').style.display = 'grid';");
+            writer.println("            document.getElementById('back-button').style.display = 'none';");
+            writer.println("            var leaderboards = document.getElementsByClassName(\"leaderboard\");");
+            writer.println("            for (var i = 0; i < leaderboards.length; i++) {");
+            writer.println("                leaderboards[i].className = leaderboards[i].className.replace(\" active\", \"\");");
+            writer.println("            }");
             writer.println("        }");
             
             // Render dinamico per le stagioni
