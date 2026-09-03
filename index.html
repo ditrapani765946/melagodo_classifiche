@@ -9,43 +9,59 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@500;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0f172a;
-            --card-bg: rgba(30, 41, 59, 0.7);
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            --accent-color: #3b82f6;
-            --accent-glow: rgba(59, 130, 246, 0.5);
+            --bg-color: #050505;
+            --card-bg: #111111;
+            --text-primary: #ffffff;
+            --text-secondary: #aaaaaa;
+            --accent-color: #92c300;
             --guest-color: #f59e0b;
         }
         body {
-            margin: 0; padding: 0;
+            margin: 0; padding: 20px;
             background-color: var(--bg-color); color: var(--text-primary);
             font-family: 'Inter', sans-serif; min-height: 100vh;
             display: flex; flex-direction: column; align-items: center;
-            background: radial-gradient(circle at top, #1e293b 0%, #0f172a 100%);
         }
-        header { margin-top: 50px; text-align: center; }
-        h1 {
+        header {
+            width: 100%; max-width: 1000px; text-align: left;
+            margin-top: 20px; margin-bottom: 40px;
+            border-bottom: 1px solid #333; padding-bottom: 15px;
+        }
+        .header-sub {
+            font-size: 0.9rem; font-weight: 600; letter-spacing: 2px;
+            color: var(--text-secondary); margin: 0; text-transform: uppercase;
+        }
+        .header-main {
             font-family: 'Outfit', sans-serif; font-size: 3rem; font-weight: 900;
-            background: linear-gradient(to right, #60a5fa, #c084fc);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            text-shadow: 0px 4px 15px rgba(96, 165, 250, 0.3); margin: 0;
+            margin: 0; letter-spacing: 1px; text-transform: uppercase; color: #fff;
         }
-        .tabs { display: flex; gap: 15px; margin-top: 40px; margin-bottom: 20px; flex-wrap: wrap; justify-content: center; }
+        .tabs {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+            width: 100%; max-width: 1000px; margin-bottom: 40px;
+        }
+        @media(max-width: 700px) { .tabs { grid-template-columns: 1fr; } }
         .tab-button {
-            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
-            color: var(--text-primary); padding: 10px 25px; border-radius: 30px;
-            cursor: pointer; font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 1rem; transition: all 0.3s ease;
+            background: var(--card-bg); border: 2px solid #222;
+            color: var(--text-primary); padding: 40px 30px; text-align: left;
+            cursor: pointer; transition: all 0.2s ease;
         }
-        .tab-button:hover { background: rgba(255,255,255,0.1); transform: translateY(-2px); }
-        .tab-button.active { background: var(--accent-color); border-color: var(--accent-color); box-shadow: 0 0 15px var(--accent-glow); }
-        .content-container { width: 100%; max-width: 900px; margin-bottom: 50px; }
+        .tab-button:hover { border-color: var(--accent-color); transform: scale(1.02); }
+        .tab-button.active { border-color: var(--accent-color); background: #1a1a1a; }
+        .tab-sub {
+            display: block; font-size: 0.8rem; font-weight: 600; letter-spacing: 2px;
+            color: var(--text-secondary); margin-bottom: 10px; text-transform: uppercase;
+        }
+        .tab-title {
+            display: block; font-family: 'Outfit', sans-serif;
+            font-size: 2.5rem; font-weight: 900; text-transform: uppercase;
+        }
+        .content-container { width: 100%; max-width: 1000px; margin-bottom: 50px; }
         .leaderboard { display: none; animation: fadeIn 0.5s ease; }
         .leaderboard.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         .card {
-            background: var(--card-bg); backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            background: var(--card-bg);
+            border: 1px solid #333; padding: 30px;
             overflow-x: auto; margin-bottom: 30px;
         }
         .section-title {
@@ -69,11 +85,18 @@
 </head>
 <body>
     <header>
-        <h1>Melagodo Classifiche</h1>
+        <h2 class="header-sub">GAMING STATS</h2>
+        <h1 class="header-main">MELAGODO</h1>
     </header>
     <div class="tabs">
-        <button class="tab-button active" onclick="openTab(event, 'gioco_0')">Golfatine</button>
-        <button class="tab-button " onclick="openTab(event, 'gioco_1')">Sdrogocorse</button>
+        <button class="tab-button active" onclick="openTab(event, 'gioco_0')">
+            <span class="tab-sub">CLASSIFICA</span>
+            <span class="tab-title">Golfatine</span>
+        </button>
+        <button class="tab-button " onclick="openTab(event, 'gioco_1')">
+            <span class="tab-sub">CLASSIFICA</span>
+            <span class="tab-title">Sdrogocorse</span>
+        </button>
     </div>
     <script>
         const multiSeasonData = {};
