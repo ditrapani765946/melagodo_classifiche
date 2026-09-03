@@ -90,15 +90,19 @@
         <h1 class="header-main">MELAGODO</h1>
     </header>
     <button id="back-button" onclick="goHome()" style="display:none; background:none; border:1px solid #333; color:#aaa; padding:10px 20px; cursor:pointer; margin-bottom:20px; align-self:flex-start;">← Torna al Menù</button>
-    <div class="tabs" id="tabs-container">
-        <button class="tab-button" onclick="openTab(event, 'gioco_0')">
-            <span class="tab-sub">CLASSIFICA</span>
-            <span class="tab-title">Golfatine</span>
-        </button>
-        <button class="tab-button" onclick="openTab(event, 'gioco_1')">
-            <span class="tab-sub">CLASSIFICA</span>
-            <span class="tab-title">Sdrogocorse</span>
-        </button>
+    <div id="tabs-container" style="width: 100%; max-width: 1000px;">
+        <div style="margin-bottom: 30px;">
+            <span class="header-sub" style="letter-spacing: 3px;">MENU PRINCIPALE</span>
+            <span class="header-main" style="display:block; font-size: 4rem;">CLASSIFICHE</span>
+        </div>
+        <div class="tabs">
+            <button class="tab-button" onclick="openTab(event, 'gioco_0')">
+                <span class="tab-title">Golfatine</span>
+            </button>
+            <button class="tab-button" onclick="openTab(event, 'gioco_1')">
+                <span class="tab-title">Sdrogocorse</span>
+            </button>
+        </div>
     </div>
     <script>
         const multiSeasonData = {};
@@ -291,7 +295,7 @@
             evt.currentTarget.className += " active";
         }
         function goHome() {
-            document.getElementById('tabs-container').style.display = 'grid';
+            document.getElementById('tabs-container').style.display = 'block';
             document.getElementById('back-button').style.display = 'none';
             var leaderboards = document.getElementsByClassName("leaderboard");
             for (var i = 0; i < leaderboards.length; i++) {

@@ -106,13 +106,18 @@ public class HtmlGenerator {
             
             writer.println("    <button id=\"back-button\" onclick=\"goHome()\" style=\"display:none; background:none; border:1px solid #333; color:#aaa; padding:10px 20px; cursor:pointer; margin-bottom:20px; align-self:flex-start;\">← Torna al Menù</button>");
 
-            writer.println("    <div class=\"tabs\" id=\"tabs-container\">");
+            writer.println("    <div id=\"tabs-container\" style=\"width: 100%; max-width: 1000px;\">");
+            writer.println("        <div style=\"margin-bottom: 30px;\">");
+            writer.println("            <span class=\"header-sub\" style=\"letter-spacing: 3px;\">MENU PRINCIPALE</span>");
+            writer.println("            <span class=\"header-main\" style=\"display:block; font-size: 4rem;\">CLASSIFICHE</span>");
+            writer.println("        </div>");
+            writer.println("        <div class=\"tabs\">");
             for (int i = 0; i < giochi.size(); i++) {
-                writer.println("        <button class=\"tab-button\" onclick=\"openTab(event, 'gioco_" + i + "')\">");
-                writer.println("            <span class=\"tab-sub\">CLASSIFICA</span>");
-                writer.println("            <span class=\"tab-title\">" + giochi.get(i).getNome() + "</span>");
-                writer.println("        </button>");
+                writer.println("            <button class=\"tab-button\" onclick=\"openTab(event, 'gioco_" + i + "')\">");
+                writer.println("                <span class=\"tab-title\">" + giochi.get(i).getNome() + "</span>");
+                writer.println("            </button>");
             }
+            writer.println("        </div>");
             writer.println("    </div>");
             
             writer.println("    <script>");
@@ -262,7 +267,7 @@ public class HtmlGenerator {
             writer.println("            evt.currentTarget.className += \" active\";");
             writer.println("        }");
             writer.println("        function goHome() {");
-            writer.println("            document.getElementById('tabs-container').style.display = 'grid';");
+            writer.println("            document.getElementById('tabs-container').style.display = 'block';");
             writer.println("            document.getElementById('back-button').style.display = 'none';");
             writer.println("            var leaderboards = document.getElementsByClassName(\"leaderboard\");");
             writer.println("            for (var i = 0; i < leaderboards.length; i++) {");
