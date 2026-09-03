@@ -56,7 +56,7 @@ public class HtmlGenerator {
             writer.println("        .tab-button {");
             writer.println("            background: var(--card-bg); border: 1px solid #222;");
             writer.println("            color: var(--text-primary); padding: 25px 25px; text-align: left;");
-            writer.println("            height: 270px; display: flex; flex-direction: column; justify-content: flex-end;");
+            writer.println("            height: 200px; display: flex; flex-direction: column; justify-content: flex-end;");
             writer.println("            cursor: pointer; transition: all 0.2s ease; border-radius: 0;");
             writer.println("        }");
             writer.println("        .tab-button:hover { border-color: var(--accent-color); transform: scale(1.02); }");
