@@ -111,7 +111,7 @@
     <div class="content-container">
         <div id="gioco_0" class="leaderboard">
             <div class="card">
-                <h2 class="section-title">Classifica Ufficiale</h2>
+                <h2 class="section-title" style="font-size: 1.5rem;">GOLFATINE - CLASSIFICA</h2>
                 <table id="table_0">
                     <thead><tr>
                         <th onclick="sortTable('table_0', 0)">Giocatore <span class="sort-icon">&#8597;</span></th>
@@ -221,7 +221,7 @@
         </div>
         <div id="gioco_1" class="leaderboard">
             <div class="card">
-                <h2 class="section-title">Classifica Ufficiale</h2>
+                <h2 class="section-title" style="font-size: 1.5rem;">SDROGOCORSE - CLASSIFICA</h2>
                 <div class="season-filters">
                     <span>Seleziona Stagioni da sommare:</span>
                     <label><input type="checkbox" value="2026" checked onchange="renderMultiSeason(1)"> 2026</label>
@@ -281,6 +281,7 @@
     <script>
         function openTab(evt, gameId) {
             document.getElementById('tabs-container').style.display = 'none';
+            document.querySelector('header').style.display = 'none';
             document.getElementById('back-button').style.display = 'block';
             var i, leaderboards, tabbuttons;
             leaderboards = document.getElementsByClassName("leaderboard");
@@ -296,6 +297,7 @@
         }
         function goHome() {
             document.getElementById('tabs-container').style.display = 'block';
+            document.querySelector('header').style.display = 'block';
             document.getElementById('back-button').style.display = 'none';
             var leaderboards = document.getElementsByClassName("leaderboard");
             for (var i = 0; i < leaderboards.length; i++) {

@@ -139,7 +139,7 @@ public class HtmlGenerator {
                 }
                 writer.println("        <div id=\"gioco_" + i + "\" class=\"leaderboard\">");
                 writer.println("            <div class=\"card\">");
-                writer.println("                <h2 class=\"section-title\">Classifica Ufficiale</h2>");
+                writer.println("                <h2 class=\"section-title\" style=\"font-size: 1.5rem;\">" + g.getNome().toUpperCase() + " - CLASSIFICA</h2>");
                 
                 if (hasSeasons) {
                     writer.println("                <div class=\"season-filters\">");
@@ -253,6 +253,7 @@ public class HtmlGenerator {
             writer.println("    <script>");
             writer.println("        function openTab(evt, gameId) {");
             writer.println("            document.getElementById('tabs-container').style.display = 'none';");
+            writer.println("            document.querySelector('header').style.display = 'none';");
             writer.println("            document.getElementById('back-button').style.display = 'block';");
             writer.println("            var i, leaderboards, tabbuttons;");
             writer.println("            leaderboards = document.getElementsByClassName(\"leaderboard\");");
@@ -268,6 +269,7 @@ public class HtmlGenerator {
             writer.println("        }");
             writer.println("        function goHome() {");
             writer.println("            document.getElementById('tabs-container').style.display = 'block';");
+            writer.println("            document.querySelector('header').style.display = 'block';");
             writer.println("            document.getElementById('back-button').style.display = 'none';");
             writer.println("            var leaderboards = document.getElementsByClassName(\"leaderboard\");");
             writer.println("            for (var i = 0; i < leaderboards.length; i++) {");
