@@ -49,14 +49,14 @@ public class HtmlGenerator {
             writer.println("            margin: 0; letter-spacing: 1px; text-transform: uppercase; color: #fff;");
             writer.println("        }");
             writer.println("        .tabs {");
-            writer.println("            display: grid; grid-template-columns: 1fr 1fr; gap: 5px;");
+            writer.println("            display: grid; grid-template-columns: 1fr 1fr; gap: 3px;");
             writer.println("            width: 100%; max-width: 1200px; margin-bottom: 40px;");
             writer.println("        }");
             writer.println("        @media(max-width: 700px) { .tabs { grid-template-columns: 1fr; } }");
             writer.println("        .tab-button {");
-            writer.println("            background: var(--card-bg); border: 1px solid #333;");
-            writer.println("            color: var(--text-primary); padding: 25px; text-align: left;");
-            writer.println("            height: 330px; display: flex; flex-direction: column; justify-content: flex-end;");
+            writer.println("            background: var(--card-bg); border: 1px solid #222;");
+            writer.println("            color: var(--text-primary); padding: 25px 25px; text-align: left;");
+            writer.println("            height: 180px; display: flex; flex-direction: column; justify-content: flex-end;");
             writer.println("            cursor: pointer; transition: all 0.2s ease; border-radius: 0;");
             writer.println("        }");
             writer.println("        .tab-button:hover { border-color: var(--accent-color); transform: scale(1.02); }");

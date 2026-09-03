@@ -36,14 +36,14 @@
             margin: 0; letter-spacing: 1px; text-transform: uppercase; color: #fff;
         }
         .tabs {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 5px;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 3px;
             width: 100%; max-width: 1200px; margin-bottom: 40px;
         }
         @media(max-width: 700px) { .tabs { grid-template-columns: 1fr; } }
         .tab-button {
-            background: var(--card-bg); border: 1px solid #333;
-            color: var(--text-primary); padding: 25px; text-align: left;
-            height: 330px; display: flex; flex-direction: column; justify-content: flex-end;
+            background: var(--card-bg); border: 1px solid #222;
+            color: var(--text-primary); padding: 25px 25px; text-align: left;
+            height: 180px; display: flex; flex-direction: column; justify-content: flex-end;
             cursor: pointer; transition: all 0.2s ease; border-radius: 0;
         }
         .tab-button:hover { border-color: var(--accent-color); transform: scale(1.02); }
