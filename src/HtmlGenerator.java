@@ -56,7 +56,7 @@ public class HtmlGenerator {
             writer.println("        .tab-button {");
             writer.println("            background: var(--card-bg); border: 1px solid #222;");
             writer.println("            color: var(--text-primary); padding: 25px 25px; text-align: left;");
-            writer.println("            height: 180px; display: flex; flex-direction: column; justify-content: flex-end;");
+            writer.println("            height: 270px; display: flex; flex-direction: column; justify-content: flex-end;");
             writer.println("            cursor: pointer; transition: all 0.2s ease; border-radius: 0;");
             writer.println("        }");
             writer.println("        .tab-button:hover { border-color: var(--accent-color); transform: scale(1.02); }");
@@ -67,7 +67,7 @@ public class HtmlGenerator {
             writer.println("        }");
             writer.println("        .tab-title {");
             writer.println("            display: block; font-family: 'Outfit', sans-serif;");
-            writer.println("            font-size: 3rem; font-weight: 900; text-transform: uppercase;");
+            writer.println("            font-size: 2.2rem; font-weight: 900; text-transform: uppercase;");
             writer.println("        }");
             writer.println("        .content-container { width: 100%; max-width: 1200px; margin-bottom: 50px; }");
             writer.println("        .leaderboard { display: none; animation: fadeIn 0.5s ease; }");
