@@ -36,12 +36,12 @@ public class HtmlGenerator {
             writer.println("            display: flex; flex-direction: column; align-items: center;");
             writer.println("        }");
             writer.println("        header {");
-            writer.println("            width: 100%; max-width: 1000px; text-align: left;");
+            writer.println("            width: 100%; max-width: 1200px; text-align: left;");
             writer.println("            margin-top: 20px; margin-bottom: 40px;");
             writer.println("            border-bottom: 1px solid #333; padding-bottom: 15px;");
             writer.println("        }");
             writer.println("        .header-sub {");
-            writer.println("            font-size: 0.9rem; font-weight: 600; letter-spacing: 2px;");
+            writer.println("            font-size: 1rem; font-weight: 600; letter-spacing: 3px;");
             writer.println("            color: var(--text-secondary); margin: 0; text-transform: uppercase;");
             writer.println("        }");
             writer.println("        .header-main {");
@@ -49,27 +49,27 @@ public class HtmlGenerator {
             writer.println("            margin: 0; letter-spacing: 1px; text-transform: uppercase; color: #fff;");
             writer.println("        }");
             writer.println("        .tabs {");
-            writer.println("            display: grid; grid-template-columns: 1fr 1fr; gap: 20px;");
-            writer.println("            width: 100%; max-width: 1000px; margin-bottom: 40px;");
+            writer.println("            display: grid; grid-template-columns: 1fr 1fr; gap: 5px;");
+            writer.println("            width: 100%; max-width: 1200px; margin-bottom: 40px;");
             writer.println("        }");
             writer.println("        @media(max-width: 700px) { .tabs { grid-template-columns: 1fr; } }");
             writer.println("        .tab-button {");
-            writer.println("            background: var(--card-bg); border: 2px solid #222;");
-            writer.println("            color: var(--text-primary); padding: 30px; text-align: left;");
-            writer.println("            height: 250px; display: flex; flex-direction: column; justify-content: flex-end;");
-            writer.println("            cursor: pointer; transition: all 0.2s ease; border-radius: 4px;");
+            writer.println("            background: var(--card-bg); border: 1px solid #333;");
+            writer.println("            color: var(--text-primary); padding: 25px; text-align: left;");
+            writer.println("            height: 330px; display: flex; flex-direction: column; justify-content: flex-end;");
+            writer.println("            cursor: pointer; transition: all 0.2s ease; border-radius: 0;");
             writer.println("        }");
             writer.println("        .tab-button:hover { border-color: var(--accent-color); transform: scale(1.02); }");
             writer.println("        .tab-button.active { border-color: var(--accent-color); background: #1a1a1a; }");
             writer.println("        .tab-sub {");
-            writer.println("            display: block; font-size: 0.8rem; font-weight: 600; letter-spacing: 2px;");
-            writer.println("            color: var(--text-secondary); margin-bottom: 5px; text-transform: uppercase;");
+            writer.println("            display: block; font-size: 0.9rem; font-weight: 600; letter-spacing: 2px;");
+            writer.println("            color: var(--text-secondary); margin-bottom: 0px; text-transform: uppercase;");
             writer.println("        }");
             writer.println("        .tab-title {");
             writer.println("            display: block; font-family: 'Outfit', sans-serif;");
-            writer.println("            font-size: 2rem; font-weight: 900; text-transform: uppercase;");
+            writer.println("            font-size: 3rem; font-weight: 900; text-transform: uppercase;");
             writer.println("        }");
-            writer.println("        .content-container { width: 100%; max-width: 1000px; margin-bottom: 50px; }");
+            writer.println("        .content-container { width: 100%; max-width: 1200px; margin-bottom: 50px; }");
             writer.println("        .leaderboard { display: none; animation: fadeIn 0.5s ease; }");
             writer.println("        .leaderboard.active { display: block; }");
             writer.println("        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }");
@@ -106,10 +106,10 @@ public class HtmlGenerator {
             
             writer.println("    <button id=\"back-button\" onclick=\"goHome()\" style=\"display:none; background:none; border:1px solid #333; color:#aaa; padding:10px 20px; cursor:pointer; margin-bottom:20px; align-self:flex-start;\">← Torna al Menù</button>");
 
-            writer.println("    <div id=\"tabs-container\" style=\"width: 100%; max-width: 1000px;\">");
-            writer.println("        <div style=\"margin-bottom: 30px;\">");
+            writer.println("    <div id=\"tabs-container\" style=\"width: 100%; max-width: 1200px;\">");
+            writer.println("        <div style=\"margin-bottom: 20px; display: flex; align-items: baseline; gap: 15px;\">");
             writer.println("            <span class=\"header-sub\" style=\"letter-spacing: 3px;\">MENU PRINCIPALE</span>");
-            writer.println("            <span class=\"header-main\" style=\"display:block; font-size: 4rem;\">CLASSIFICHE</span>");
+            writer.println("            <span class=\"header-main\" style=\"font-size: 4rem;\">CLASSIFICHE</span>");
             writer.println("        </div>");
             writer.println("        <div class=\"tabs\">");
             for (int i = 0; i < giochi.size(); i++) {

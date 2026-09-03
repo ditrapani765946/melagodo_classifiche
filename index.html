@@ -23,12 +23,12 @@
             display: flex; flex-direction: column; align-items: center;
         }
         header {
-            width: 100%; max-width: 1000px; text-align: left;
+            width: 100%; max-width: 1200px; text-align: left;
             margin-top: 20px; margin-bottom: 40px;
             border-bottom: 1px solid #333; padding-bottom: 15px;
         }
         .header-sub {
-            font-size: 0.9rem; font-weight: 600; letter-spacing: 2px;
+            font-size: 1rem; font-weight: 600; letter-spacing: 3px;
             color: var(--text-secondary); margin: 0; text-transform: uppercase;
         }
         .header-main {
@@ -36,27 +36,27 @@
             margin: 0; letter-spacing: 1px; text-transform: uppercase; color: #fff;
         }
         .tabs {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
-            width: 100%; max-width: 1000px; margin-bottom: 40px;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 5px;
+            width: 100%; max-width: 1200px; margin-bottom: 40px;
         }
         @media(max-width: 700px) { .tabs { grid-template-columns: 1fr; } }
         .tab-button {
-            background: var(--card-bg); border: 2px solid #222;
-            color: var(--text-primary); padding: 30px; text-align: left;
-            height: 250px; display: flex; flex-direction: column; justify-content: flex-end;
-            cursor: pointer; transition: all 0.2s ease; border-radius: 4px;
+            background: var(--card-bg); border: 1px solid #333;
+            color: var(--text-primary); padding: 25px; text-align: left;
+            height: 330px; display: flex; flex-direction: column; justify-content: flex-end;
+            cursor: pointer; transition: all 0.2s ease; border-radius: 0;
         }
         .tab-button:hover { border-color: var(--accent-color); transform: scale(1.02); }
         .tab-button.active { border-color: var(--accent-color); background: #1a1a1a; }
         .tab-sub {
-            display: block; font-size: 0.8rem; font-weight: 600; letter-spacing: 2px;
-            color: var(--text-secondary); margin-bottom: 5px; text-transform: uppercase;
+            display: block; font-size: 0.9rem; font-weight: 600; letter-spacing: 2px;
+            color: var(--text-secondary); margin-bottom: 0px; text-transform: uppercase;
         }
         .tab-title {
             display: block; font-family: 'Outfit', sans-serif;
-            font-size: 2rem; font-weight: 900; text-transform: uppercase;
+            font-size: 3rem; font-weight: 900; text-transform: uppercase;
         }
-        .content-container { width: 100%; max-width: 1000px; margin-bottom: 50px; }
+        .content-container { width: 100%; max-width: 1200px; margin-bottom: 50px; }
         .leaderboard { display: none; animation: fadeIn 0.5s ease; }
         .leaderboard.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
@@ -90,10 +90,10 @@
         <h1 class="header-main">MELAGODO</h1>
     </header>
     <button id="back-button" onclick="goHome()" style="display:none; background:none; border:1px solid #333; color:#aaa; padding:10px 20px; cursor:pointer; margin-bottom:20px; align-self:flex-start;">← Torna al Menù</button>
-    <div id="tabs-container" style="width: 100%; max-width: 1000px;">
-        <div style="margin-bottom: 30px;">
+    <div id="tabs-container" style="width: 100%; max-width: 1200px;">
+        <div style="margin-bottom: 20px; display: flex; align-items: baseline; gap: 15px;">
             <span class="header-sub" style="letter-spacing: 3px;">MENU PRINCIPALE</span>
-            <span class="header-main" style="display:block; font-size: 4rem;">CLASSIFICHE</span>
+            <span class="header-main" style="font-size: 4rem;">CLASSIFICHE</span>
         </div>
         <div class="tabs">
             <button class="tab-button" onclick="openTab(event, 'gioco_0')">
