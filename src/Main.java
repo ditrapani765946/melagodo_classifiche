@@ -10,15 +10,15 @@ public class Main {
         Gioco golfatine = new Gioco("Golfatine", colonneGolf);
 
         Punteggio delux = new Punteggio("Delux");
-        delux.addStat("Partite Giocate", 71); delux.addStat("Vittorie", 24); delux.addStat("Win %", "33.8%"); delux.addStat("Media Punti", 70.46); delux.addStat("Over/Under Par", "+9.84");
+        delux.addStat("Partite Giocate", 72); delux.addStat("Vittorie", 24); delux.addStat("Win %", "33.3%"); delux.addStat("Media Punti", 70.43); delux.addStat("Over/Under Par", "+9.79");
         golfatine.aggiungiPunteggio(delux);
 
         Punteggio rohn = new Punteggio("Just Rohn");
-        rohn.addStat("Partite Giocate", 60); rohn.addStat("Vittorie", 21); rohn.addStat("Win %", "35.0%"); rohn.addStat("Media Punti", 71.53); rohn.addStat("Over/Under Par", "+9.95");
+        rohn.addStat("Partite Giocate", 61); rohn.addStat("Vittorie", 22); rohn.addStat("Win %", "36.1%"); rohn.addStat("Media Punti", 71.28); rohn.addStat("Over/Under Par", "+9.79");
         golfatine.aggiungiPunteggio(rohn);
 
         Punteggio dread = new Punteggio("nonsonodread");
-        dread.addStat("Partite Giocate", 76); dread.addStat("Vittorie", 20); dread.addStat("Win %", "26.3%"); dread.addStat("Media Punti", 70.60); dread.addStat("Over/Under Par", "+10.51");
+        dread.addStat("Partite Giocate", 77); dread.addStat("Vittorie", 20); dread.addStat("Win %", "26.0%"); dread.addStat("Media Punti", 70.52); dread.addStat("Over/Under Par", "+10.40");
         golfatine.aggiungiPunteggio(dread);
 
         Punteggio masseo = new Punteggio("ilMasseo");
@@ -34,7 +34,7 @@ public class Main {
         golfatine.aggiungiPunteggio(gabbo);
 
         Punteggio jtaz = new Punteggio("JTaz");
-        jtaz.addStat("Partite Giocate", 22); jtaz.addStat("Vittorie", 1); jtaz.addStat("Win %", "4.5%"); jtaz.addStat("Media Punti", 80.03); jtaz.addStat("Over/Under Par", "+22.33");
+        jtaz.addStat("Partite Giocate", 23); jtaz.addStat("Vittorie", 1); jtaz.addStat("Win %", "4.3%"); jtaz.addStat("Media Punti", 80.16); jtaz.addStat("Over/Under Par", "+22.54");
         golfatine.aggiungiPunteggio(jtaz);
 
         Punteggio marza = new Punteggio("Just Marzaa");
