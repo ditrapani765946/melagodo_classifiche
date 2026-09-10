@@ -10,31 +10,31 @@ public class Main {
         Gioco golfatine = new Gioco("Golfatine", colonneGolf);
 
         Punteggio delux = new Punteggio("Delux");
-        delux.addStat("Partite Giocate", 74); delux.addStat("Vittorie", 24); delux.addStat("Win %", "32.4%"); delux.addStat("Media Punti", 70.22); delux.addStat("Over/Under Par", "+9.18");
+        delux.addStat("Partite Giocate", 75); delux.addStat("Vittorie", 25); delux.addStat("Win %", "33.3%"); delux.addStat("Media Punti", 70.46); delux.addStat("Over/Under Par", "+9.81");
         golfatine.aggiungiPunteggio(delux);
 
         Punteggio rohn = new Punteggio("Just Rohn");
-        rohn.addStat("Partite Giocate", 61); rohn.addStat("Vittorie", 22); rohn.addStat("Win %", "36.1%"); rohn.addStat("Media Punti", 71.28); rohn.addStat("Over/Under Par", "+9.79");
+        rohn.addStat("Partite Giocate", 62); rohn.addStat("Vittorie", 22); rohn.addStat("Win %", "35.5%"); rohn.addStat("Media Punti", 71.32); rohn.addStat("Over/Under Par", "+9.90");
         golfatine.aggiungiPunteggio(rohn);
 
         Punteggio dread = new Punteggio("nonsonodread");
-        dread.addStat("Partite Giocate", 79); dread.addStat("Vittorie", 21); dread.addStat("Win %", "26.6%"); dread.addStat("Media Punti", 70.27); dread.addStat("Over/Under Par", "+9.76");
+        dread.addStat("Partite Giocate", 80); dread.addStat("Vittorie", 21); dread.addStat("Win %", "26.2%"); dread.addStat("Media Punti", 70.44); dread.addStat("Over/Under Par", "+10.43");
         golfatine.aggiungiPunteggio(dread);
 
         Punteggio masseo = new Punteggio("ilMasseo");
-        masseo.addStat("Partite Giocate", 36); masseo.addStat("Vittorie", 8); masseo.addStat("Win %", "22.2%"); masseo.addStat("Media Punti", 79.92); masseo.addStat("Over/Under Par", "+14.78");
+        masseo.addStat("Partite Giocate", 36); masseo.addStat("Vittorie", 8); masseo.addStat("Win %", "22.2%"); masseo.addStat("Media Punti", 80.19); masseo.addStat("Over/Under Par", "+15.39");
         golfatine.aggiungiPunteggio(masseo);
 
         Punteggio mollu = new Punteggio("Mollu");
-        mollu.addStat("Partite Giocate", 30); mollu.addStat("Vittorie", 9); mollu.addStat("Win %", "30.0%"); mollu.addStat("Media Punti", 84.73); mollu.addStat("Over/Under Par", "+21.93");
+        mollu.addStat("Partite Giocate", 31); mollu.addStat("Vittorie", 9); mollu.addStat("Win %", "29.0%"); mollu.addStat("Media Punti", 85.39); mollu.addStat("Over/Under Par", "+23.03");
         golfatine.aggiungiPunteggio(mollu);
 
         Punteggio gabbo = new Punteggio("GaBBo");
-        gabbo.addStat("Partite Giocate", 67); gabbo.addStat("Vittorie", 4); gabbo.addStat("Win %", "6.0%"); gabbo.addStat("Media Punti", 83.33); gabbo.addStat("Over/Under Par", "+23.09");
+        gabbo.addStat("Partite Giocate", 68); gabbo.addStat("Vittorie", 4); gabbo.addStat("Win %", "5.9%"); gabbo.addStat("Media Punti", 84.16); gabbo.addStat("Over/Under Par", "+24.31");
         golfatine.aggiungiPunteggio(gabbo);
 
         Punteggio jtaz = new Punteggio("JTaz");
-        jtaz.addStat("Partite Giocate", 24); jtaz.addStat("Vittorie", 1); jtaz.addStat("Win %", "4.2%"); jtaz.addStat("Media Punti", 79.36); jtaz.addStat("Over/Under Par", "+21.06");
+        jtaz.addStat("Partite Giocate", 25); jtaz.addStat("Vittorie", 1); jtaz.addStat("Win %", "4.0%"); jtaz.addStat("Media Punti", 79.44); jtaz.addStat("Over/Under Par", "+21.92");
         golfatine.aggiungiPunteggio(jtaz);
 
         Punteggio marza = new Punteggio("Just Marzaa");
